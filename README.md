@@ -2,6 +2,15 @@
 
 `bprint` is the colorizing cat. It displays content with syntax highlighting.
 
+# Install
+
+For OSX
+
+```
+$ brew tap nomuyoshi/bprint
+$ brew install bprint
+```
+
 # Usage
 Default theme is `monokai`.
 
