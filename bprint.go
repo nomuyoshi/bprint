@@ -2,24 +2,23 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"io/ioutil"
-	"strings"
-
 	"github.com/alecthomas/chroma/formatters"
 	"github.com/alecthomas/chroma/lexers"
 	"github.com/alecthomas/chroma/styles"
 	flag "github.com/spf13/pflag"
+	"io"
+	"io/ioutil"
+	"strings"
 )
 
 const (
-	exitCodeOK int = iota
+	tty        string = "terminal256"
+	exitCodeOK int    = iota
 	exitCodeErr
 )
 
 // options
 var (
-	tty   string
 	theme string
 	list  bool
 	help  bool
@@ -34,12 +33,12 @@ type CLI struct {
 func (c *CLI) Run(args []string) int {
 	flags := flag.NewFlagSet("bprint", flag.ContinueOnError)
 	flags.BoolVarP(&help, "help", "h", false, "show this help message")
-	flags.StringVar(&tty, "tty", "terminal256", `terminal type. "terminal256" or "terminal"`)
 	flags.BoolVarP(&list, "list", "l", false, "show themes list")
 	flags.StringVarP(&theme, "theme", "t", "monokai", "theme")
 	flags.SetOutput(c.outStream)
 	if err := flags.Parse(args[1:]); err != nil {
-		fmt.Fprintf(c.errStream, "%s\n", err)
+		fmt.Fprintf(c.errStream, "illegal option exits.\n")
+		flags.PrintDefaults()
 		return exitCodeErr
 	}
 	if help {
