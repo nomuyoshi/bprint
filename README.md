@@ -1,0 +1,13 @@
+# bprint
+
+`bprint` is the colorizing cat. It displays content with syntax highlighting.
+
+# Usage
+Default theme is `monokai`.
+
+```
+$ bprint FILE1 FILE2 ...
+$ bprint --theme="solarized-dark256" FILE1 FILE2 ... # set theme
+$ bprint --list # show available theme list
+```
+
